@@ -8,6 +8,7 @@ The folders are named as follows:
 1. cosine_sim: Calculating cosine similarity between rows of a matrix.
 2. linear_minist_class: Linear neural networks for MNIST classification.
 3. conv_mnist_class: Convolutional neural networks for MNIST classification.
+4. poly_reg: Polynomial function regression.
 
 ## Requirments
 Please install [PyTorch](http://pytorch.org/) as indicated. Please be careful about the *version* of Python and PyTorch. Before you run the codes, check whether your machine supports GPU or not.
