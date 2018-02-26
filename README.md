@@ -1,7 +1,8 @@
 # PyTorch Tutorial
+PyTorch tutorial codes for Advanced Machine Learning, Spring 2018.
 
 ## Notes
-PyTorch tutorial codes for Advanced Machine Learning, Spring 2018. The folders are named as follows:
+The folders are named as follows:
 
 ### Week 1:
 1. cosine_sim: Introduction to leverage GPU of calculating matrix. 
