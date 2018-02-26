@@ -1,4 +1,6 @@
-# PyTorchTutorial
+# PyTorch Tutorial
+
+## Notes
 PyTorch tutorial codes for Advanced Machine Learning, Spring 2018. The folders are named as follows:
 
 ### Week 1:
