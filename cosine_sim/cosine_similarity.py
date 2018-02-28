@@ -1,4 +1,4 @@
-# Introduction experiemnt of course EL-9133 Advanced Machine Learning, NYU, Spring 2018
+# PyTorch tutorial codes for course EL-9133 Advanced Machine Learning, NYU, Spring 2018
 import datetime
 import torch
 import torch.nn.functional as F
