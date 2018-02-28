@@ -5,6 +5,7 @@ from itertools import count
 import torch
 import torch.autograd
 import torch.nn.functional as F
+import torch.optim as optim
 from torch.autograd import Variable
 
 #---------- Generate Target Polinomial Function ----------#
@@ -55,17 +56,17 @@ for batch_idx in count(1):
     optimizer.zero_grad()
     output = model(batch_x)                     
     loss = F.smooth_l1_loss(output, batch_y)  
-    loss = output.data[0]
+    loss_data = loss.data[0]
 
     # Backward pass
-    output.backward() 
+    loss.backward() 
     optimizer.step() 
 
     # Stop iteration
-    if loss < 1e-3:  
+    if loss_data < 1e-3:  
         break
 
 #---------- Print ----------#
-print('Loss: {:.6f} after {} batches'.format(loss, batch_idx))
-print('==> Learned function:\t' + poly_desc(fc.weight.data.view(-1), fc.bias.data))
+print('Loss: {:.6f} after {} batches'.format(loss_data, batch_idx))
+print('==> Learned function:\t' + poly_desc(model.weight.data.view(-1), model.bias.data))
 print('==> Actual function:\t' + poly_desc(W_target.view(-1), b_target))
