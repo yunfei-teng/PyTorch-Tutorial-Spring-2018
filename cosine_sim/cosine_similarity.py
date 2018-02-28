@@ -36,8 +36,8 @@ vectors = vectors.cuda()
 _norm  = torch.norm(vectors, 2, 0)
 _vectors = vectors / _norm
 result3 = torch.mm(_vectors.t(), _vectors) 
-current_time = datetime.datetime.now()
 result3 = result3.cpu()
+current_time = datetime.datetime.now()
 print('Algorithm 3 Time Interval:', current_time - start_time)
 
 # You can check that they have the same results. However, due to the different precision of 
