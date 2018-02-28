@@ -8,8 +8,8 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.autograd import Variable
 
-#---------- Generate Target Polinomial Function ----------#
-# A polinomial function: y = w_1* x^1 + b_1 + w_2* x^2 + b_2 + ... + w_n* x^n + b_n
+#---------- Generate Target Polynomial Function ----------#
+# A polynomial function: y = w_1* x^1 + b_1 + w_2* x^2 + b_2 + ... + w_n* x^n + b_n
 # Learnable parameters: w_1, w_2, ..., w_n, b_1, b_2, ..., b_n
 # n = POLY_DEGREE
 POLY_DEGREE = 4
