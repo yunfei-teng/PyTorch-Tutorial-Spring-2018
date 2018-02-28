@@ -2,7 +2,7 @@
 PyTorch tutorial codes for Advanced Machine Learning, Spring 2018.
 
 ## Notes:
-We have 2 recitations in total.
+We have 2 recitations in total. All the codes are inspired by [PyTorch official examples](https://github.com/pytorch/examples).
 
 ### Recitation 1:
 1. cosine_sim: Calculating cosine similarity of vectors.
