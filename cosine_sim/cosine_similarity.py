@@ -4,7 +4,7 @@ import torch
 import torch.nn.functional as F
 
 print('\nThis experiemnt shows the efficiency of different algorithms calculating consine similarity of columns of a square matrix:')
-print('Algorithm 1: Using forloop \nAlgorithm 2: Using Matrix on CPU \nAlgorithm 2: Using Matrix on GPU')
+print('Algorithm 1: Using forloop \nAlgorithm 2: Using Matrix on CPU \nAlgorithm 3: Using Matrix on GPU')
 
 ########## Experiment 1 ##########
 size = 1000
