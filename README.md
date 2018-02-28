@@ -1,9 +1,6 @@
 # PyTorch Tutorial
 PyTorch tutorial codes for Advanced Machine Learning, Spring 2018.
 
-## Notes
-The folders are named as follows:
-
 ### Recitation 1:
 1. cosine_sim: Calculating cosine similarity of vectors.
 2. classification: MNIST digit classification.
