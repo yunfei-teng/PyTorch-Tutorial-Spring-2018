@@ -1,5 +1,5 @@
 # PyTorch Tutorial
-PyTorch tutorial codes for Advanced Machine Learning, Spring 2018.
+PyTorch tutorial codes for course EL-9133 Advanced Machine Learning, NYU, Spring 2018
 
 ## Notes:
 We have 2 recitations in total. All the codes are inspired by [PyTorch official examples](https://github.com/pytorch/examples).
@@ -10,7 +10,7 @@ We have 2 recitations in total. All the codes are inspired by [PyTorch official 
 3. regression: Regression for polynomial functions.
 
 ## Requirments
-Please install [PyTorch](http://pytorch.org/) as indicated. Please be careful about the *version* of Python and PyTorch. I strongly recommed Python3 instead of Python2. Before you run the codes, check whether your machine supports GPU or not.
+Please install [PyTorch](http://pytorch.org/) as indicated. Please be careful about the *version* of Python, PyTorch and Cuda. I strongly recommed Python3 instead of Python2. Before you run the codes, check whether your machine supports GPU or not.
 
 ## Liscense
 All rights reserved. Please do not copy or redistribute without permission.
