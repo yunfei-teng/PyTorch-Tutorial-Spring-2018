@@ -1,5 +1,5 @@
 # PyTorch tutorial codes for course EL-9133 Advanced Machine Learning, NYU, Spring 2018
-# Network/model.py: define model
+# Architecture/model.py: define model
 import torch.nn as nn
 import torch.nn.functional as F
 
