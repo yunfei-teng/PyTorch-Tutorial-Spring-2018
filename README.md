@@ -21,9 +21,9 @@ Please install [PyTorch](http://pytorch.org/) as indicated. Please be careful ab
 
 ## Run
 The dataset should be downloaded automatically. STL10 is a large dataset, and it may take several minutes.
-"""
+'''
 python train.py
-"""
+'''
 
 ## Thanks
 All the codes are inspired by [PyTorch official examples](https://github.com/pytorch/examples). 
