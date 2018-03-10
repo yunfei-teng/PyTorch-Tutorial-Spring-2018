@@ -15,8 +15,12 @@ parser.add_argument('--optimizer',default='Adam', metavar='OPTM',
                     help='define optimizer (default: Adam)')               
 parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
                     help='learning rate (default: 0.01)')
-parser.add_argument('--visualize', action='store_true', default=False,
-                    help='visual backprop')
+parser.add_argument('--dataset',default='stl10', metavar='DSET',
+                    help='define dataset') 
+parser.add_argument('--visualize', action='store_false', default=True,
+                    help='visualbackprop')
+parser.add_argument('--visualize_epoch', type=int, default=5, metavar='N',
+                    help='how many epochs to wait before visualbackprop')
 parser.add_argument('--continue_training', action='store_true', default=False,
                      help='continue training')
 parser.add_argument('--use_resnet', action='store_true', default=False,

@@ -11,7 +11,8 @@ from Architecture.model import netG, netD, nz
 from Architecture.optim import optimizerG, optimizerD
 
 def train(epoch):
-    input = torch.FloatTensor(args.batch_size, 1, 64, 64)
+    # define input, noise, label
+    input = torch.FloatTensor(args.batch_size, 1, 32, 32)
     noise = torch.FloatTensor(args.batch_size, nz, 1, 1)
     label = torch.FloatTensor(args.batch_size)
     fixed_noise = torch.FloatTensor(args.batch_size, nz, 1, 1).normal_(0, 1)
@@ -25,13 +26,12 @@ def train(epoch):
 
     fixed_noise = Variable(fixed_noise)
     for batch_idx, (data, target) in enumerate(train_loader):
+        if data.size(0) != args.batch_size:
+            break
+        ## --Discriminator-- ##
         netD.zero_grad()
-        real_cpu = data
-        batch_size = real_cpu.size(0)
-        if args.cuda:
-            real_cpu = real_cpu.cuda()
-        input.resize_as_(real_cpu).copy_(real_cpu)
-        label.resize_(batch_size).fill_(real_label)
+        input.copy_(data)
+        label.fill_(real_label)
         inputv = Variable(input)
         labelv = Variable(label)
 
@@ -42,7 +42,7 @@ def train(epoch):
         D_x = output.data.mean()
 
         # train with fake
-        noise.resize_(batch_size, nz, 1, 1).normal_(0, 1)
+        noise.resize_(args.batch_size, nz, 1, 1).normal_(0, 1)
         noisev = Variable(noise)
         fake = netG(noisev)
         labelv = Variable(label.fill_(fake_label))
@@ -53,6 +53,7 @@ def train(epoch):
         errD = errD_real + errD_fake
         optimizerD.step()
 
+        ## --Generator-- ##
         netG.zero_grad()
         labelv = Variable(label.fill_(real_label))  # fake labels are real for generator cost
         output = netD(fake)
@@ -61,14 +62,18 @@ def train(epoch):
         D_G_z2 = output.data.mean()
         optimizerG.step()
 
+        ## --Print Loss-- ##
         print('[%d/%d][%d/%d] Loss_D: %.4f Loss_G: %.4f D(x): %.4f D(G(z)): %.4f / %.4f'
               % (epoch, args.epochs, batch_idx, len(train_loader),
                  errD.data[0], errG.data[0], D_x, D_G_z1, D_G_z2))
 
-    if epoch % args.save_model_epoch == 0:
+    # Save real and fake images
+    if epoch % args.save_image_epoch == 0:
         utils.save_image(input,'real_samples.png', normalize=True)
         fake = netG(fixed_noise)
         utils.save_image(fake.data,'fake_samples.png',normalize=True)
 
+    # Save Model
+    if epoch % args.save_model_epoch == 0:
         torch.save(netG.state_dict(), 'netG.pth')
         torch.save(netD.state_dict(), 'netD.pth')

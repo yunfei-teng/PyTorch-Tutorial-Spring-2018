@@ -11,7 +11,9 @@ if args.optimizer =='SGD':
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=0.1)
 elif args.optimizer =='Adam':
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
-
+else:
+    raise ValueError('Wrong name of optimizer')
+    
 print('\n---Training Details---')
 print('batch size:',args.batch_size)
 print('seed number', args.seed)

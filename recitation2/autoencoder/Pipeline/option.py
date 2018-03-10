@@ -12,7 +12,9 @@ parser.add_argument('--test-batch-size', type=int, default=64, metavar='N',
 parser.add_argument('--epochs', type=int, default=500, metavar='N',
                     help='number of epochs to train (default: 10)')
 parser.add_argument('--optimizer',default='Adam', metavar='OPTM',
-                    help='define optimizer (default: Adam)')               
+                    help='define optimizer (default: Adam)')  
+parser.add_argument('--dataset',default='stl10', metavar='DSET',
+                    help='define dataset')              
 parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
                     help='learning rate (default: 0.01)')
 parser.add_argument('--continue_training', action='store_true', default=False,
@@ -27,6 +29,8 @@ parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
 parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                     help='how many batches to wait before logging training status')
+parser.add_argument('--save_image_epoch', type=int, default=5, metavar='N',
+                    help='how many epochs to wait before saving image')
 parser.add_argument('--save_model_epoch', type=int, default=10, metavar='N',
                     help='how many epochs to wait before saving model')
 

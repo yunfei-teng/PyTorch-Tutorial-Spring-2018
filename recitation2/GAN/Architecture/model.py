@@ -31,7 +31,8 @@ class Generator(nn.Module):
             #(nc) x 32 x 32
         )
     def forward(self, x):
-        return self.main(x)
+        output = self.main(x)
+        return output
 
 class Discriminator(nn.Module):
     def __init__(self):
@@ -54,8 +55,8 @@ class Discriminator(nn.Module):
             nn.Sigmoid()
         )
 
-    def forward(self, input):
-        output = self.main(input)
+    def forward(self, x):
+        output = self.main(x)
         return output.view(-1, 1).squeeze(1)
 
 netG = Generator()

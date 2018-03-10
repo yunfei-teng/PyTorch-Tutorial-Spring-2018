@@ -3,7 +3,7 @@
 import time, datetime
 
 from Pipeline.option import args
-from Pipeline.run import train, test, visualize
+from Pipeline.run import train, test
 
 start_time = datetime.datetime.now().replace(microsecond=0)
 print('\n---Started training at---', (start_time))

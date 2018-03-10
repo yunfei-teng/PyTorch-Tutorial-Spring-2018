@@ -25,11 +25,15 @@ def train(epoch):
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                 100. * batch_idx / len(train_loader), loss.data[0]))
-        if epoch % args.save_model_epoch:
-            torch.save(model.state_dict(), 'model.pth')
-            # if args.cuda:
-            #     model.cuda()
+                
+    if epoch % args.save_model_epoch:
+        torch.save(model.state_dict(), 'model.pth')
 
+    if args.visualize and epoch % args.visualize_epoch == 0:
+        output = model.visual_backprop(data)
+        utils.save_image(data.data, 'origin_pictures.png', normalize=True, scale_each=True)
+        utils.save_image(output.data, 'visual_results.png', normalize=True, scale_each=True)
+        
 def test():
     model.eval()
     test_loss = 0
@@ -47,16 +51,3 @@ def test():
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)'.format(
         test_loss, correct, len(test_loader.dataset),
         100. * correct / len(test_loader.dataset)))
-
-def visualize():
-    model.eval()
-    for data, target in test_loader:
-        if args.cuda:
-            data, target = data.cuda(), target.cuda()
-        data, target = Variable(data, volatile=True), Variable(target)
-        output = model.visual_backprop(data)
-        output = output.repeat(1, 3, 1, 1)
-        print(output.size())
-        utils.save_image(data.data, 'origin_pictures.png', normalize=True, scale_each=True)
-        utils.save_image(output.data, 'visual_results.png', normalize=True, scale_each=True)
-        break

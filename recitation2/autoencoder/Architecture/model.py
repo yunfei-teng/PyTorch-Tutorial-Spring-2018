@@ -11,9 +11,7 @@ class Autoencoder(nn.Module):
     def __init__(self):
         super(Autoencoder, self).__init__()
         nf = 16
-        # Conv2d(in_channels, out_channels, kernel_size, stride, etc.)
-        # resized input size = 128
-        m_layer = 3
+        # convolution
         self.conv1 = nn.Sequential(
                         nn.Conv2d(3, nf, 4, 2, 1),
                         nn.BatchNorm2d(nf),
@@ -35,6 +33,7 @@ class Autoencoder(nn.Module):
                         nn.ReLU(True)
         )
 
+        # transposed convolution
         self.trans_conv1 = nn.Sequential(
                         nn.ConvTranspose2d(nf, 3, 4, 2, 1),
         )
@@ -53,6 +52,7 @@ class Autoencoder(nn.Module):
                         nn.BatchNorm2d(nf*4),
                         nn.ReLU(True)
         )
+        
     def forward(self, x):
         x1 = self.conv1(x)
         x2 = self.conv2(x1)
@@ -68,7 +68,7 @@ class Autoencoder(nn.Module):
             y3 = self.trans_conv3(y4)
             y2 = self.trans_conv2(y3)
             y1 = self.trans_conv1(y2)
-        return y1
+        return F.tanh(y1)
 
 model = Autoencoder()
 if args.continue_training:

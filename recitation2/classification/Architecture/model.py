@@ -18,6 +18,7 @@ class ConvNet(nn.Module):
         self.net = nn.ModuleList()
         self.net.extend([nn.Conv2d(3, nf, 7, 1, 3)])
         pre_mul, cur_mul = 1, 1
+        
         for i in range(m_layer):
             cur_mul = min(2** i, 4)
             _net = []
@@ -38,21 +39,24 @@ class ConvNet(nn.Module):
         x = x.view(-1, 10)
         return F.log_softmax(x, dim=1)
 
-    def visual_backprop(self, x):
+    def visual_backprop(self, input):
         self.visual_result = []
         self.m_layer = 3
         up_sample = nn.Upsample(scale_factor=2)
+        x = input
         for idx, layer in enumerate(self.net):
             x = layer(x)
-            # print(x.size())
-            self.visual_result += [x.mean(dim=1,keepdim=True)]
+            _mask = x.mean(dim=1, keepdim = True)
+            _max = torch.max(_mask, dim = 2, keepdim = True)[0]
+            _max = torch.max(_max, dim=2, keepdim = True)[0]
+            mask = _mask / _max.expand_as(_mask)
+            self.visual_result += [mask]
             if idx >= self.m_layer:
                 break
-        res = self.visual_result[self.m_layer]
-        # print(res.size())
+        final_mask = self.visual_result[self.m_layer]
         for idx in range(self.m_layer-1, -1, -1):
-            # print(self.visual_result[idx].size())
-            res = up_sample(res)* self.visual_result[idx]
+            final_mask = up_sample(final_mask)* self.visual_result[idx]
+        res = final_mask.repeat(1,3,1,1) * input
         return res
 
 class ResidualBlock(nn.Module):
