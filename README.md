@@ -24,6 +24,8 @@ The dataset should be downloaded automatically. STL10 is a large dataset, and it
 ```
 python3 train.py
 ```
+## About Homework
+You need to modify the codes and add functions like plotting for your homework. If you have any question, please email yt1208@nyu.edu. As I promised, I will maintain this repository till March 15.
 
 ## Thanks
 All the codes are inspired by [PyTorch official examples](https://github.com/pytorch/examples). 
