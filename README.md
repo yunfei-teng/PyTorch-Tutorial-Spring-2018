@@ -1,6 +1,9 @@
 # PyTorch Tutorial
 PyTorch tutorial codes for course EL-9133 Advanced Machine Learning, NYU, Spring 2018
 
+# Requirements:
+Pytorch 0.2(newest version is stable 1.0)
+
 ## Notes:
 We have 2 recitations in total:
 1. Introduction to Neural Networks and PyTorch.
